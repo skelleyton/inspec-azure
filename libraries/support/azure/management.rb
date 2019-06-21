@@ -207,6 +207,46 @@ module Azure
       )
     end
 
+    def mysql_servers(resource_group)
+      get(
+        url: link(location: 'Microsoft.DBforMySQL/servers',
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def mysql_server(resource_group, name)
+      get(
+        url: link(location: "Microsoft.DBforMySQL/servers/#{name}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def postgresql_servers(resource_group)
+      get(
+        url: link(location: 'Microsoft.DBforPostgreSQL/servers',
+                  resource_group: resource_group),
+        api_version: '2017-12-01'
+      )
+    end
+
+    def postgresql_server(resource_group, name)
+      get(
+        url: link(location: "Microsoft.DBforPostgreSQL/servers/#{name}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01'
+      )
+    end
+
+    def postgresql_server_configuration(resource_group, name, configuration)
+      get(
+        url: link(location: "Microsoft.DBforPostgreSQL/servers/#{name}/configurations/#{configuration}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01'
+      )
+    end
+
     def sql_servers(resource_group)
       get(
         url: link(location: 'Microsoft.Sql/servers',
@@ -252,6 +292,14 @@ module Azure
         url: link(location: "Microsoft.Sql/servers/#{server_name}/firewallRules",
                   resource_group: resource_group),
         api_version: '2014-04-01',
+      )
+    end
+
+    def sql_server_keys(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/keys",
+                  resource_group: resource_group),
+        api_version: '2015-05-01-preview',
       )
     end
 
